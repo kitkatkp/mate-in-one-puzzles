@@ -1,0 +1,8 @@
+[
+  {
+    "id": "sample-01",
+    "fen": "6k1/7Q/6K1/8/8/8/8/8 w - - 0 1",
+    "sideToMove": "w",
+    "solutions": ["Qg7#"]
+  }
+]

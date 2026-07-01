@@ -1,19 +1,25 @@
 {
   "name": "mate-in-one-puzzles",
   "version": "1.0.0",
-  "description": "",
+  "description": "Verified mate-in-one chess puzzle library and validation tools.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate": "tsx scripts/validate.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "chess",
+    "mate-in-one",
+    "puzzles",
+    "validation"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "chess.js": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.19.43",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   }
