@@ -1,0 +1,11 @@
+{
+  "compared": 3000,
+  "positions_sha256": "781ffebc2f1d189c15c8cef332bec2b51a964f447db3cdd72e2fa9e7e671c1ff",
+  "differences": [],
+  "implementations": [
+    "python-chess 1.11.2",
+    "chess.js 1.4.0"
+  ],
+  "scope": "Legal, checking, mating move sets and reply counts after every check; does not prove prose or human difficulty.",
+  "passed": true
+}

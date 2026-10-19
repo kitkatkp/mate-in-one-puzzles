@@ -1,0 +1,6 @@
+chess==1.11.2
+numpy==2.3.4
+scikit-learn==1.7.2
+scipy==1.16.2
+matplotlib==3.10.7
+zstandard==0.25.0

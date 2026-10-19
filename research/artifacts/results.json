@@ -1,0 +1,141 @@
+{
+  "experiment": "Mate-in-one difficulty pilot v1",
+  "target": "Lichess puzzle rating, not universal cognitive difficulty",
+  "seed": 42,
+  "n_positions": 3000,
+  "n_features": 24,
+  "split_counts": {
+    "train": 1800,
+    "validation": 600,
+    "test": 600
+  },
+  "split_game_counts": {
+    "train": 1800,
+    "validation": 600,
+    "test": 600
+  },
+  "split_policy": "Source-game grouped 60/20/20 split after exact/mirrored deduplication; train fits parameters and scaling, validation selects settings/model, test reports results once.",
+  "selected_on_validation": "Boosted trees",
+  "models": {
+    "Training median": {
+      "parameters": {},
+      "validation": {
+        "mae": 239.75166666666667,
+        "spearman": null
+      },
+      "test": {
+        "mae": 241.30333333333334,
+        "spearman": null
+      }
+    },
+    "Piece count": {
+      "parameters": {
+        "alpha": 1
+      },
+      "validation": {
+        "mae": 236.69022341736647,
+        "spearman": 0.13784885104079894
+      },
+      "test": {
+        "mae": 242.9445824145834,
+        "spearman": 0.07970982542027807
+      }
+    },
+    "Checking-ratio score": {
+      "parameters": {
+        "alpha": 100
+      },
+      "validation": {
+        "mae": 213.0681665513257,
+        "spearman": 0.5016726103277843
+      },
+      "test": {
+        "mae": 212.46780100845115,
+        "spearman": 0.5222630586169885
+      }
+    },
+    "Linear board features": {
+      "parameters": {
+        "alpha": 100
+      },
+      "validation": {
+        "mae": 200.4210449270298,
+        "spearman": 0.5703423671342522
+      },
+      "test": {
+        "mae": 198.93952364719686,
+        "spearman": 0.5998817409730527
+      }
+    },
+    "Boosted trees": {
+      "parameters": {
+        "max_leaf_nodes": 7,
+        "max_iter": 150,
+        "learning_rate": 0.05,
+        "l2_regularization": 10
+      },
+      "validation": {
+        "mae": 191.533076975963,
+        "spearman": 0.5893087183836105
+      },
+      "test": {
+        "mae": 190.74496819584735,
+        "spearman": 0.6186780651837889
+      }
+    }
+  },
+  "raw_checking_ratio_test_spearman": 0.5222630586169885,
+  "selected_vs_median_mae_difference_95pct_group_bootstrap": [
+    -63.13662360329954,
+    -38.968387322461936
+  ],
+  "bootstrap_note": "1000 source-game bootstrap resamples; negative MAE differences favor the selected model. This excludes training and model-selection uncertainty.",
+  "sample_sha256": "2a869fc5d6b2e1f3ea9b5b19733d6f077f3affaf71e9f05ed5f0a46128326f1b",
+  "features_sha256": "d644d8f3c8dfc0352ce31bbebe27a4dae43cc988b3e3a40a9f2683dff89ccb1a",
+  "sample_manifest": {
+    "source": "https://database.lichess.org/lichess_db_puzzle.csv.zst",
+    "license": "CC0",
+    "retrieved_at_utc": "2026-10-19T21:32:25.786501+00:00",
+    "upstream_headers": {
+      "Last-Modified": "Fri, 02 Oct 2026 08:51:45 GMT",
+      "ETag": "\"6abf70a1-125007eb\"",
+      "Content-Length": "307234795"
+    },
+    "source_rows_scanned": 100000,
+    "eligible_rows": 9713,
+    "selected_rows": 3000,
+    "seed": 42,
+    "min_plays": 100,
+    "max_rating_deviation": 100,
+    "sample_sha256": "2a869fc5d6b2e1f3ea9b5b19733d6f077f3affaf71e9f05ed5f0a46128326f1b",
+    "sampling_limit": "Seeded reservoir sample within a bounded prefix; not a uniform sample of the complete Lichess database.",
+    "position_rule": "FEN precedes the opponent move. Apply Moves[0] to obtain the solver position; Moves[1] is the published solver move."
+  },
+  "independent_verification": {
+    "compared": 3000,
+    "positions_sha256": "781ffebc2f1d189c15c8cef332bec2b51a964f447db3cdd72e2fa9e7e671c1ff",
+    "differences": [],
+    "implementations": [
+      "python-chess 1.11.2",
+      "chess.js 1.4.0"
+    ],
+    "scope": "Legal, checking, mating move sets and reply counts after every check; does not prove prose or human difficulty.",
+    "passed": true
+  },
+  "versions": {
+    "chess": "1.11.2",
+    "numpy": "2.3.4",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.7"
+  },
+  "python": "3.12.14",
+  "limitations": [
+    "A seeded sample of a quality-filtered bounded prefix, not a representative sample of every puzzle or learner.",
+    "Ratings are noisy, platform-specific aggregate outcomes. The CSV does not provide individual solve times or player attempts.",
+    "Exact/mirrored duplicates are removed and source games are grouped; other near-duplicate tactical patterns may remain.",
+    "The holdout becomes a development set if repeatedly inspected and used to redesign the model; use new held-out data for future confirmatory claims.",
+    "Model associations are not causal explanations of human difficulty. Generalization to composed teaching puzzles is untested.",
+    "No human learning improvement or player rating prediction is established by this study."
+  ]
+}

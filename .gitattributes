@@ -1,0 +1,3 @@
+# Preserve the exact bytes used by the research provenance checksums.
+research/data/*.csv text eol=lf
+research/artifacts/*.csv text eol=lf

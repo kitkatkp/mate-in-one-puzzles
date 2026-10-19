@@ -5,6 +5,7 @@
     "moduleResolution": "Bundler",
     "strict": true,
     "types": ["node"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
@@ -12,6 +13,6 @@
     "outDir": "dist",
     "rootDir": "."
   },
-  "include": ["src", "scripts", "data"],
+  "include": ["src", "scripts", "tests", "data", "web", "research/**/*.ts"],
   "exclude": ["node_modules"]
 }
